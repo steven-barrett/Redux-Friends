@@ -4,7 +4,8 @@ import {
     LOGIN_FAILURE,
     FETCH_DATA_START,
     FETCH_DATA_SUCCESS,
-    FETCH_DATA_FAILURE
+    FETCH_DATA_FAILURE,
+    ADD_FRIEND
   } from '../actions';
   
   const initialState = {
@@ -34,13 +35,19 @@ import {
           error: '',
           fetchingData: true
         };
-      case FETCH_DATA_SUCCESS:
+        case FETCH_DATA_SUCCESS:
         return {
           ...state,
           fetchingData: false,
           friends: action.payload
         };
-      case FETCH_DATA_FAILURE:
+      case ADD_FRIEND:
+        return {
+          ...state,
+          fetchingData: false,
+          friends: [...state.friends, action.payload]
+        };
+          case FETCH_DATA_FAILURE:
         return {
           ...state,
           fetchingData: false,
